@@ -1,4 +1,4 @@
-highlight MyGroup cterm=italic,bold ctermbg=16 ctermfg=25
+highlight MotionGroup cterm=italic,bold ctermbg=16 ctermfg=25
 let g:m = 0
 
 function g:CleanPrev()
@@ -11,27 +11,26 @@ endfunction
 
 function g:HighW()
   call g:CleanPrev()
-  let g:m = matchadd( "MyGroup", '\(\s\)\@<=\S\%'.line('.').'l\%>'.(col('.')+1).'c' )
-  "match MyGroup /'\(\s\)\@<=\S\%'.line('.').'l\%>'.(col('.')+1).'c'/
+  let g:m = matchadd( "MotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%>'.(col('.')+1).'c' )
   set cursorcolumn
 endfunction
 
 function g:HighB()
   call g:CleanPrev()
-  let g:m = matchadd( "MyGroup", '\(\s\)\@<=\S\%'.line('.').'l\%<'.(col('.')+1).'c' )
+  let g:m = matchadd( "MotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%<'.(col('.')+1).'c' )
   set cursorcolumn
 endfunction
 
 function g:Highw()
   call g:CleanPrev()
   " thanks to sakkemo from #vim on irc.freenode.org for finding the good regexp
-  let g:m = matchadd( "MyGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%>'.(col('.')+1).'c' )
+  let g:m = matchadd( "MotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%>'.(col('.')+1).'c' )
   set cursorcolumn
 endfunction
 
 function g:Highb()
   call g:CleanPrev()
-  let g:m = matchadd( "MyGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%<'.(col('.')+1).'c' )
+  let g:m = matchadd( "MotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%<'.(col('.')+1).'c' )
   set cursorcolumn
 endfunction
 
@@ -47,4 +46,3 @@ nmap <silent> l l:call g:CleanPrev()<Enter>
 nmap <silent> h h:call g:CleanPrev()<Enter>
 
 autocmd WinLeave * call g:CleanPrev()
-
