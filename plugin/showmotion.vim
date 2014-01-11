@@ -1,5 +1,6 @@
 "highlight MotionGroup cterm=italic,bold ctermbg=16 ctermfg=4
-highlight MotionGroup cterm=underline,italic,bold ctermbg=16
+"highlight MotionGroup cterm=underline,italic,bold ctermbg=16
+highlight MotionGroup cterm=underline,italic ctermbg=16
 
 "--- ID of the highlighting group
 let s:id = 0
@@ -15,30 +16,30 @@ endfunction
 
 "--- Big moves
 function g:HighW()
-  let s:id = matchadd( "MotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%>'.(col('.')+1).'c' )
+  let s:id = matchadd( "MotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%>'.(col('.')).'c' )
 endfunction
 
 function g:HighB()
-  let s:id = matchadd( "MotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%<'.(col('.')+1).'c' )
+  let s:id = matchadd( "MotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%<'.(col('.')+2).'c' )
 endfunction
 
 function g:HighE()
-  let s:id = matchadd( "MotionGroup", '\(\S\ze\s\)\%'.line('.').'l\%>'.(col('.')+1).'c' )
+  let s:id = matchadd( "MotionGroup", '\(\S\ze\s\)\%'.line('.').'l\%>'.(col('.')).'c' )
 endfunction
 
 
 "--- Small moves
 function g:Highw()
-  " thanks to sakkemo from #vim on irc.freenode.org for finding the good regexp
-  let s:id = matchadd( "MotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%>'.(col('.')+1).'c' )
+  " thanks to sakkemo from #vim on irc.freenode.org who found the good regexp
+  let s:id = matchadd( "MotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%>'.(col('.')).'c' )
 endfunction
 
 function g:Highb()
-  let s:id = matchadd( "MotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%<'.(col('.')+1).'c' )
+  let s:id = matchadd( "MotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%<'.(col('.')+2).'c' )
 endfunction
 
 function g:Highe()
-  let s:id = matchadd( "MotionGroup", '\(\k\>\|\S\<\|\S\ze\s\)\%'.line('.').'l\%>'.(col('.')+1).'c' )
+  let s:id = matchadd( "MotionGroup", '\(\k\>\|\S\<\|\S\ze\s\)\%'.line('.').'l\%>'.(col('.')).'c' )
 endfunction
 
 
