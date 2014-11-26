@@ -3,12 +3,9 @@
   highlight BigMotionGroup cterm=italic,bold,underline ctermbg=54 ctermfg=none
 
 
-  "--- IDs of the highlighting groups
-  "let s:id = 0
-  let s:big_id = 0
-  let s:small_id = 0
-  "---
-  let s:behaviour = 1
+  "--- Vars
+    let s:big_id = 0
+    let s:small_id = 0
 
   "--- Clean words' motions highlighting
     function g:CleanWordMotion()
@@ -52,10 +49,10 @@
     endfunction
 
 
-  "---Autocommand to call CleanWordMotion
-  autocmd WinLeave * call g:CleanWordMotion()
-  autocmd InsertEnter * call g:CleanWordMotion()
-  autocmd CursorMoved * call g:CleanWordMotion()
+  "---Autocommands to call CleanWordMotion
+    autocmd WinLeave * call g:CleanWordMotion()
+    autocmd InsertEnter * call g:CleanWordMotion()
+    autocmd CursorMoved * call g:CleanWordMotion()
 
 
 
@@ -63,10 +60,10 @@
   highlight CharSearchGroup cterm=italic,bold ctermbg=4 ctermfg=none
 
   " The vars
-  let g:char = 97
-  let g:key = 'a'
-  let s:c_id = 0
-  let g:dir = "none"
+    let g:char = 97
+    let g:key = 'a'
+    let s:c_id = 0
+    let g:dir = "none"
 
   "--- The functions
   function SeekCharForward()
@@ -79,7 +76,7 @@
       let n = search( escape(nr2char(g:char), ".$^~"), 'W', line('.') )
       call setpos( '.' , [0, line('.'), (col('.') - 1), 0] )
     end
-    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
+    "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
   endfunction
 
   function SeekCharBackward()
@@ -92,7 +89,7 @@
       let n = search( escape(nr2char(g:char), ".$^~"), 'bW', line('.') )
       call setpos( '.' , [0, line('.'), (col('.') + 1), 0] )
     end
-    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
+    "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
   endfunction
 
   function g:SeekRepeat()
@@ -111,12 +108,39 @@
     end
   endfunction
 
+
+  function HighCharForward()
+    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
+  endfunction
+
+  function HighCharBackward()
+    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
+  endfunction
+
+  function g:HighRepeat()
+    if ( g:dir == "forward" )
+      call HighCharForward()
+    else
+      call HighCharBackward()
+    end
+  endfunction
+
+  function g:HighReverse()
+    if ( g:dir == "forward" )
+      call HighCharBackward()
+    else
+      call HighCharForward()
+    end
+  endfunction
+
+
   function g:CleanCharMotion()
     if s:c_id
       call matchdelete(s:c_id)
       let s:c_id = 0
     end
   endfunction
+
 
   function g:FindChar( key, dir)
     let g:key = a:key
@@ -129,6 +153,7 @@
   endfunction
 
 
-  "---Autocommand to call CleanMotion
+  "---Autocommands to call CleanCharMotion
   autocmd WinLeave * call g:CleanCharMotion()
   autocmd InsertEnter * call g:CleanCharMotion()
+  autocmd CursorMoved * call g:CleanCharMotion()

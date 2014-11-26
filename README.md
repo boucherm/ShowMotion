@@ -1,13 +1,21 @@
 ShowMotion
 ==========
 
-Ever hammered the {'w','W','b','B','e','E',';',','} keys to finally pass the location where you wanted to land at?  
+Ever hammered the {'w','W','b','B','e','E',';',','} keys to finally pass over the location you were aiming for?  
 ShowMotion is a tiny vim plugin to highlight the potential landing places when moving:
 
 * by words with {'w','W','b','B','e','E'}.
 * by chars with {'f','F','t','T',';',','}
 
 Somewhat inspired by the EasyMotion plugin, this one is only aimed at providing cues about where you'll land, not allowing to select a specific landing place. The pleasant consequence of this is it doesn't break your moving flow, which was the motivation for writing it.
+
+ [Demo]()
+
+
+Installation:
+
+ I suggest using [pathogen](https://github.com/tpope/vim-pathogen)
+
 
 Add these to your vimrc:  
   > "Show motion for words:  
@@ -23,12 +31,14 @@ Add these to your vimrc:
     nnoremap t :call g:FindChar( 't', "forward" )<CR>  
     nnoremap F :call g:FindChar( 'F', "backward" )<CR>  
     nnoremap T :call g:FindChar( 'T', "backward" )<CR>  
-    nnoremap ; :call g:SeekRepeat()<CR>  
-    nnoremap , :call g:SeekReverse()<CR>  
+    nnoremap ; :call g:SeekRepeat()<CR>:call g:HighRepeat()<CR>
+    nnoremap , :call g:SeekReverse()<CR>:call g:HighReverse()<CR>
 
 
 Known limitations:
 
-* Highlight groups are defined for term vim, update it if you use gvim.
+* For char-motions highlighting is only triggered when pressing ';' or ','
+* Highlight groups are defined for term vim, update them if you use gvim.
 * Highlight groups are not modifiable outside of the script.
 * Reloading vimrc seems to break the plugin
+* 'E' fails on highlighting the last character of the line
