@@ -18,15 +18,16 @@ Installation:
 
 
 Add these to your vimrc:  
-  > "Show motion for words:  
-    nnoremap <silent> w w:call g:Highw()<Enter>:call g:HighW()<Enter>  
-    nnoremap <silent> W W:call g:Highw()<Enter>:call g:HighW()<Enter>  
-    nnoremap <silent> b b:call g:Highb()<Enter>:call g:HighB()<Enter>  
-    nnoremap <silent> B B:call g:Highb()<Enter>:call g:HighB()<Enter>  
-    nnoremap <silent> e e:call g:Highe()<Enter>:call g:HighE()<Enter>  
-    nnoremap <silent> E E:call g:Highe()<Enter>:call g:HighE()<Enter>  
 
-  > "Show motion for chars:  
+    "Show motion for words:  
+    nnoremap <silent> w w:call g:Highw()<CR>:call g:HighW()<CR>  
+    nnoremap <silent> W W:call g:Highw()<CR>:call g:HighW()<CR>  
+    nnoremap <silent> b b:call g:Highb()<CR>:call g:HighB()<CR>  
+    nnoremap <silent> B B:call g:Highb()<CR>:call g:HighB()<CR>  
+    nnoremap <silent> e e:call g:Highe()<CR>:call g:HighE()<CR>  
+    nnoremap <silent> E E:call g:Highe()<CR>:call g:HighE()<CR>  
+
+    "Show motion for chars:  
     nnoremap f :call g:FindChar( 'f', "forward" )<CR>  
     nnoremap t :call g:FindChar( 't', "forward" )<CR>  
     nnoremap F :call g:FindChar( 'F', "backward" )<CR>  
