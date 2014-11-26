@@ -1,10 +1,11 @@
 ShowMotion
 ==========
 
-Tiny vim plugin to highlight landing places when moving:
+Ever hammered the {'w','W','b','B','e','E',';',','} keys to finally pass the location where you wanted to land at?  
+ShowMotion is a tiny vim plugin to highlight the potential landing places when moving:
 
 * by words with {'w','W','b','B','e','E'}.
-* by char with {'f','F','t','T',';',','}
+* by chars with {'f','F','t','T',';',','}
 
 Somewhat inspired by the EasyMotion plugin, this one is only aimed at providing cues about where you'll land, not allowing to select a specific landing place. The pleasant consequence of this is it doesn't break your moving flow, which was the motivation for writing it.
 
