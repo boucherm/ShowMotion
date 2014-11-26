@@ -42,3 +42,7 @@ Known limitations:
 * Highlight groups are not modifiable outside of the script.
 * Reloading vimrc seems to break the plugin
 * 'E' fails on highlighting the last character of the line
+
+
+Errors on update?  
+ A gif was pushed on the repo, I realized it wasn't a good idea, thus I removed it from the repo and its history. The internet says this may cause some troubles.
