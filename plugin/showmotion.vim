@@ -176,7 +176,6 @@
   " . some characters interpreted as regexp ('.' for example)
   " . direct mappings may conflict with vimrc defined mappings
   " . need to call g:CleanCharMotion() when: insert, winleave, cursor moved " except by 'f','t','F','T',';',','
-  " . when no candidate char the ones before cursor are highlighted
 
   "---Autocommand to call CleanMotion
   autocmd WinLeave * call g:CleanCharMotion()
