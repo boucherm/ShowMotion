@@ -9,8 +9,7 @@ ShowMotion is a tiny vim plugin to highlight the potential landing places when m
 
 Somewhat inspired by the EasyMotion plugin, this one is only aimed at providing cues about where you'll land, not allowing to select a specific landing place. The pleasant consequence of this is it doesn't break your moving flow, which was the motivation for writing it.
 
- ![Demo](https://raw.githubusercontent.com/boucherm/ShowMotion/master/screencast.gif)
-
+ ![Demo](https://i.imgur.com/sWUqiF3.gif)
 
 Installation:
 
