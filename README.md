@@ -10,7 +10,7 @@ Somewhat inspired by the EasyMotion plugin, this one is only aimed at providing 
 
 Add these to your vimrc:  
   > "Show motion for words:  
-    > > nnoremap <silent> w w:call g:Highw()<Enter>:call g:HighW()<Enter>  
+    nnoremap <silent> w w:call g:Highw()<Enter>:call g:HighW()<Enter>  
     nnoremap <silent> W W:call g:Highw()<Enter>:call g:HighW()<Enter>  
     nnoremap <silent> b b:call g:Highb()<Enter>:call g:HighB()<Enter>  
     nnoremap <silent> B B:call g:Highb()<Enter>:call g:HighB()<Enter>  
