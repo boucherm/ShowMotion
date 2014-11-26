@@ -11,5 +11,5 @@ Highlight group is defined for term vim, update it if you use gvim.
 
 Highlight parameters are not (yet?) modifiable outside of the script.
 
-Might come:
+Not yet very polished:
   highlights for f,F,t,T moves.
