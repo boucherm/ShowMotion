@@ -31,3 +31,4 @@ Known limitations:
 
 * Highlight groups are defined for term vim, update it if you use gvim.
 * Highlight groups are not modifiable outside of the script.
+* Reloading vimrc seems to break the plugin
