@@ -17,7 +17,7 @@ Add these to your vimrc:
     nnoremap <silent> e e:call g:Highe()<Enter>:call g:HighE()<Enter>  
     nnoremap <silent> E E:call g:Highe()<Enter>:call g:HighE()<Enter>  
 
-  "Show motion for chars:  
+  > "Show motion for chars:  
     nnoremap f :call g:FindChar( 'f', "forward" )<CR>  
     nnoremap t :call g:FindChar( 't', "forward" )<CR>  
     nnoremap F :call g:FindChar( 'F', "backward" )<CR>  
