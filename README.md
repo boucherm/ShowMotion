@@ -2,8 +2,9 @@ ShowMotion
 ==========
 
 Tiny vim plugin to highlight landing places when moving:
-. by words with {'w','W','b','B','e','E'}.
-. by char with {'f','F','t','T',';',','}
+
+* by words with {'w','W','b','B','e','E'}.
+* by char with {'f','F','t','T',';',','}
 
 Somewhat inspired by the EasyMotion plugin, this one is only aimed at providing cues about where you'll land, not allowing to select a specific landing place. The pleasant consequence of this is it doesn't break your moving flow, which was the motivation for writing it.
 
@@ -25,6 +26,6 @@ Add these to your vimrc:
 
 
 Known limitations:
-. Highlight groups are defined for term vim, update it if you use gvim.
 
-. Highlight groups are not modifiable outside of the script.
+* Highlight groups are defined for term vim, update it if you use gvim.
+* Highlight groups are not modifiable outside of the script.
