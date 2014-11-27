@@ -38,12 +38,12 @@ Add these highlighting settings to your vimrc:
 Add these word-motion settings to your vimrc:  
 
     "*** Highlights both big and small motions
-    nmap <silent> w <Plug>(show-motion-wW)
-    nmap <silent> W <Plug>(show-motion-wW)
-    nmap <silent> b <Plug>(show-motion-bB)
-    nmap <silent> B <Plug>(show-motion-bB)
-    nmap <silent> e <Plug>(show-motion-eE)
-    nmap <silent> E <Plug>(show-motion-eE)
+    nmap <silent> w <Plug>(show-motion-both-w)
+    nmap <silent> W <Plug>(show-motion-both-W)
+    nmap <silent> b <Plug>(show-motion-both-b)
+    nmap <silent> B <Plug>(show-motion-both-B)
+    nmap <silent> e <Plug>(show-motion-both-e)
+    nmap <silent> E <Plug>(show-motion-both-E)
 
     "*** Only highlights motions corresponding to the one you typed
     nmap <silent> w <Plug>(show-motion-w)
@@ -67,7 +67,7 @@ Add these character-motion settings to your vimrc:
 Known limitations:
 
 * For char-motions highlighting is only triggered when pressing `;` or `,`
-* `E` fails on highlighting the last character of the line
+* `E` fails on highlighting the last character in the line
 * Char-motions appear to be case-insensitive
 
 
