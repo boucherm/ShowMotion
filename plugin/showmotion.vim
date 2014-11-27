@@ -1,3 +1,19 @@
+"---<Plug> mappings
+  nnoremap <Plug>(showmotion-w) w:call g:Highw()<CR>:call g:HighW()<CR>
+  nnoremap <Plug>(showmotion-W) W:call g:Highw()<CR>:call g:HighW()<CR>
+  nnoremap <Plug>(showmotion-b) b:call g:Highb()<CR>:call g:HighB()<CR>
+  nnoremap <Plug>(showmotion-B) B:call g:Highb()<CR>:call g:HighB()<CR>
+  nnoremap <Plug>(showmotion-e) e:call g:Highe()<CR>:call g:HighE()<CR>
+  nnoremap <Plug>(showmotion-E) E:call g:Highe()<CR>:call g:HighE()<CR>
+
+  "Show motion for chars:
+  nnoremap <Plug>(show-motion-f) :call g:FindChar( 'f', "forward" )<CR>
+  nnoremap <Plug>(show-motion-t) :call g:FindChar( 't', "forward" )<CR>
+  nnoremap <Plug>(show-motion-F) :call g:FindChar( 'F', "backward" )<CR>
+  nnoremap <Plug>(show-motion-T) :call g:FindChar( 'T', "backward" )<CR>
+  nnoremap <Plug>(show-motion-;) :call g:SeekRepeat()<CR>:call g:HighRepeat()<CR>
+  nnoremap <Plug>(show-motion-,) :call g:SeekReverse()<CR>:call g:HighReverse()<CR>
+
 "----- Word Motions
   highlight SmallMotionGroup cterm=italic ctermbg=53 ctermfg=none
   highlight BigMotionGroup cterm=italic,bold,underline ctermbg=54 ctermfg=none
