@@ -16,14 +16,14 @@ Installation:
  I suggest using [pathogen](https://github.com/tpope/vim-pathogen)
 
 
-Add these to your vimrc:  
+Add these highlighting settings to your vimrc:  
 
-    "Highlighting (probably needs to be adapted to your colorscheme):
+    "*** If your plugins are loaded after your colorscheme
     highlight SM_SmallMotionGroup cterm=italic                ctermbg=53 gui=italic                guibg=#5f005f
     highlight SM_BigMotionGroup   cterm=italic,bold,underline ctermbg=54 gui=italic,bold,underline guibg=#5f0087
     highlight SM_CharSearchGroup  cterm=italic,bold           ctermbg=4  gui=italic,bold           guibg=#3f6691
-    "
-    "Or, if you load your colorscheme after your plugins:
+
+    "*** If your colorscheme is loaded after your plugins
     function! SM_Highlight()
       highlight SM_SmallMotionGroup cterm=italic                ctermbg=53 gui=italic                guibg=#5f005f
       highlight SM_BigMotionGroup   cterm=italic,bold,underline ctermbg=54 gui=italic,bold,underline guibg=#5f0087
@@ -35,20 +35,25 @@ Add these to your vimrc:
       autocmd ColorScheme call SM_Highlight()
     augroup END
 
-    "Show motion for words:  
+Add these word-motion settings to your vimrc:  
+
+    "*** Highlights both big and small motions
     nnoremap <silent> w w:call SM_Highw()<CR>:call SM_HighW()<CR>
     nnoremap <silent> W W:call SM_Highw()<CR>:call SM_HighW()<CR>
     nnoremap <silent> b b:call SM_Highb()<CR>:call SM_HighB()<CR>
     nnoremap <silent> B B:call SM_Highb()<CR>:call SM_HighB()<CR>
     nnoremap <silent> e e:call SM_Highe()<CR>:call SM_HighE()<CR>
     nnoremap <silent> E E:call SM_Highe()<CR>:call SM_HighE()<CR>
-    "Or:
+
+    "*** Only highlights motions corresponding to the one you typed
     nnoremap <silent> w w:call SM_Highw()<CR>
     nnoremap <silent> W W:call SM_HighW()<CR>
     nnoremap <silent> b b:call SM_Highb()<CR>
     nnoremap <silent> B B:call SM_HighB()<CR>
     nnoremap <silent> e e:call SM_Highe()<CR>
     nnoremap <silent> E E:call SM_HighE()<CR>
+
+Add these character-motion settings to your vimrc:  
 
     "Show motion for chars:  
     nnoremap f :call SM_FindChar( 'f', "forward" )<CR>
