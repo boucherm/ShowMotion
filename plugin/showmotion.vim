@@ -49,10 +49,6 @@
     endfunction
 
 
-  "---Autocommands to call CleanWordMotion
-    autocmd WinLeave * call SM_CleanWordMotion()
-    autocmd InsertEnter * call SM_CleanWordMotion()
-    autocmd CursorMoved * call SM_CleanWordMotion()
 
 
 
@@ -153,7 +149,16 @@
   endfunction
 
 
-  "---Autocommands to call CleanCharMotion
-  autocmd WinLeave * call SM_CleanCharMotion()
-  autocmd InsertEnter * call SM_CleanCharMotion()
-  autocmd CursorMoved * call SM_CleanCharMotion()
+"----- Autocommands to clean highlighting
+  augroup SM_CleanWordAutocmds
+    "--- autocommands to call CleanWordMotion
+    autocmd! WinLeave * call SM_CleanWordMotion()
+    autocmd! InsertEnter * call SM_CleanWordMotion()
+    autocmd! CursorMoved * call SM_CleanWordMotion()
+  augroup end
+    "--- autocommands to call CleanCharMotion
+  augroup SM_CleanCharAutocmds
+    autocmd! WinLeave * call SM_CleanCharMotion()
+    autocmd! InsertEnter * call SM_CleanCharMotion()
+    autocmd! CursorMoved * call SM_CleanCharMotion()
+  augroup end
