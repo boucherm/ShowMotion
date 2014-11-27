@@ -19,20 +19,20 @@ Installation:
 Add these to your vimrc:  
 
     "Show motion for words:  
-    nnoremap <silent> w w:call g:Highw()<CR>:call g:HighW()<CR>  
-    nnoremap <silent> W W:call g:Highw()<CR>:call g:HighW()<CR>  
-    nnoremap <silent> b b:call g:Highb()<CR>:call g:HighB()<CR>  
-    nnoremap <silent> B B:call g:Highb()<CR>:call g:HighB()<CR>  
-    nnoremap <silent> e e:call g:Highe()<CR>:call g:HighE()<CR>  
-    nnoremap <silent> E E:call g:Highe()<CR>:call g:HighE()<CR>  
+    nmap <silent> w <Plug>(showmotion-w)
+    nmap <silent> W <Plug>(showmotion-W)
+    nmap <silent> b <Plug>(showmotion-b)
+    nmap <silent> B <Plug>(showmotion-B)
+    nmap <silent> e <Plug>(showmotion-e)
+    nmap <silent> E <Plug>(showmotion-E)
 
     "Show motion for chars:  
-    nnoremap f :call g:FindChar( 'f', "forward" )<CR>  
-    nnoremap t :call g:FindChar( 't', "forward" )<CR>  
-    nnoremap F :call g:FindChar( 'F', "backward" )<CR>  
-    nnoremap T :call g:FindChar( 'T', "backward" )<CR>  
-    nnoremap ; :call g:SeekRepeat()<CR>:call g:HighRepeat()<CR>
-    nnoremap , :call g:SeekReverse()<CR>:call g:HighReverse()<CR>
+    nmap f <Plug>(showmotion-f)
+    nmap t <Plug>(showmotion-t)
+    nmap F <Plug>(showmotion-F)
+    nmap T <Plug>(showmotion-T)
+    nmap ; <Plug>(showmotion-;)
+    nmap , <Plug>(showmotion-,)
 
 
 Known limitations:
