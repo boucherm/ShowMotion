@@ -38,30 +38,30 @@ Add these highlighting settings to your vimrc:
 Add these word-motion settings to your vimrc:  
 
     "*** Highlights both big and small motions
-    nnoremap <silent> w w:call SM_Highw()<CR>:call SM_HighW()<CR>
-    nnoremap <silent> W W:call SM_Highw()<CR>:call SM_HighW()<CR>
-    nnoremap <silent> b b:call SM_Highb()<CR>:call SM_HighB()<CR>
-    nnoremap <silent> B B:call SM_Highb()<CR>:call SM_HighB()<CR>
-    nnoremap <silent> e e:call SM_Highe()<CR>:call SM_HighE()<CR>
-    nnoremap <silent> E E:call SM_Highe()<CR>:call SM_HighE()<CR>
+    nmap <silent> w <Plug>(show-motion-wW)
+    nmap <silent> W <Plug>(show-motion-wW)
+    nmap <silent> b <Plug>(show-motion-bB)
+    nmap <silent> B <Plug>(show-motion-bB)
+    nmap <silent> e <Plug>(show-motion-eE)
+    nmap <silent> E <Plug>(show-motion-eE)
 
     "*** Only highlights motions corresponding to the one you typed
-    nnoremap <silent> w w:call SM_Highw()<CR>
-    nnoremap <silent> W W:call SM_HighW()<CR>
-    nnoremap <silent> b b:call SM_Highb()<CR>
-    nnoremap <silent> B B:call SM_HighB()<CR>
-    nnoremap <silent> e e:call SM_Highe()<CR>
-    nnoremap <silent> E E:call SM_HighE()<CR>
+    nmap <silent> w <Plug>(show-motion-w)
+    nmap <silent> W <Plug>(show-motion-W)
+    nmap <silent> b <Plug>(show-motion-b)
+    nmap <silent> B <Plug>(show-motion-B)
+    nmap <silent> e <Plug>(show-motion-e)
+    nmap <silent> E <Plug>(show-motion-E)
 
 Add these character-motion settings to your vimrc:  
 
     "Show motion for chars:  
-    nnoremap f :call SM_FindChar( 'f', "forward" )<CR>
-    nnoremap t :call SM_FindChar( 't', "forward" )<CR>
-    nnoremap F :call SM_FindChar( 'F', "backward" )<CR>
-    nnoremap T :call SM_FindChar( 'T', "backward" )<CR>
-    nnoremap ; :call SM_SeekRepeat()<CR>:call SM_HighRepeat()<CR>
-    nnoremap , :call SM_SeekReverse()<CR>:call SM_HighReverse()<CR>
+    nmap f <Plug>(show-motion-f)
+    nmap t <Plug>(show-motion-t)
+    nmap F <Plug>(show-motion-F)
+    nmap T <Plug>(show-motion-T)
+    nmap ; <Plug>(show-motion-;)
+    nmap , <Plug>(show-motion-,)
 
 
 Known limitations:

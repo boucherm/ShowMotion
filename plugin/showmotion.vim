@@ -151,15 +151,36 @@
 
 
 "----- Autocommands to clean highlighting
-  "--- autocommands to call CleanWordMotion
   augroup SM_CleanWordAutocmds
     autocmd! WinLeave * call SM_CleanWordMotion()
     autocmd! InsertEnter * call SM_CleanWordMotion()
     autocmd! CursorMoved * call SM_CleanWordMotion()
   augroup end
-  "--- autocommands to call CleanCharMotion
+
   augroup SM_CleanCharAutocmds
     autocmd! WinLeave * call SM_CleanCharMotion()
     autocmd! InsertEnter * call SM_CleanCharMotion()
     autocmd! CursorMoved * call SM_CleanCharMotion()
   augroup end
+
+
+
+"----- <Plug> mappings
+  "---<Plug> mappings
+  nnoremap <Plug>(show-motion-w) w:call SM_Highw()<CR>
+  nnoremap <Plug>(show-motion-W) W:call SM_HighW()<CR>
+  nnoremap <Plug>(show-motion-b) b:call SM_Highb()<CR>
+  nnoremap <Plug>(show-motion-B) B:call SM_HighB()<CR>
+  nnoremap <Plug>(show-motion-e) e:call SM_Highe()<CR>
+  nnoremap <Plug>(show-motion-E) E:call SM_HighE()<CR>
+
+  nnoremap <Plug>(show-motion-wW) w:call SM_Highw()<CR>:call SM_HighW()<CR>
+  nnoremap <Plug>(show-motion-bB) b:call SM_Highb()<CR>:call SM_HighB()<CR>
+  nnoremap <Plug>(show-motion-eE) e:call SM_Highe()<CR>:call SM_HighE()<CR>
+  "Show motion for chars:
+  nnoremap <Plug>(show-motion-f) :call SM_FindChar( 'f', "forward" )<CR>
+  nnoremap <Plug>(show-motion-t) :call SM_FindChar( 't', "forward" )<CR>
+  nnoremap <Plug>(show-motion-F) :call SM_FindChar( 'F', "backward" )<CR>
+  nnoremap <Plug>(show-motion-T) :call SM_FindChar( 'T', "backward" )<CR>
+  nnoremap <Plug>(show-motion-;) :call SM_SeekRepeat()<CR>:call SM_HighRepeat()<CR>
+  nnoremap <Plug>(show-motion-,) :call SM_SeekReverse()<CR>:call SM_HighReverse()<CR>
