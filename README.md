@@ -18,6 +18,11 @@ Installation:
 
 Add these to your vimrc:  
 
+    "Highlighting (probably needs to be adapted to your colorscheme)
+    highlight SM_SmallMotionGroup cterm=italic                ctermbg=53 gui=italic                guibg=#5f005f
+    highlight SM_BigMotionGroup   cterm=italic,bold,underline ctermbg=54 gui=italic,bold,underline guibg=#5f0087
+    highlight SM_CharSearchGroup  cterm=italic,bold           ctermbg=4  gui=italic,bold           guibg=#3f6691
+
     "Show motion for words:  
     nnoremap <silent> w w:call SM_Highw()<CR>:call SM_HighW()<CR>
     nnoremap <silent> W W:call SM_Highw()<CR>:call SM_HighW()<CR>
@@ -46,9 +51,6 @@ Add these to your vimrc:
 Known limitations:
 
 * For char-motions highlighting is only triggered when pressing `;` or `,`
-* Highlight groups are defined for term vim, update them if you use gvim.
-* Highlight groups are not modifiable outside of the script.
-* Reloading vimrc seems to break the plugin
 * `E` fails on highlighting the last character of the line
 
 
