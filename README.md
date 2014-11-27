@@ -19,20 +19,28 @@ Installation:
 Add these to your vimrc:  
 
     "Show motion for words:  
-    nnoremap <silent> w w:call g:Highw()<CR>:call g:HighW()<CR>  
-    nnoremap <silent> W W:call g:Highw()<CR>:call g:HighW()<CR>  
-    nnoremap <silent> b b:call g:Highb()<CR>:call g:HighB()<CR>  
-    nnoremap <silent> B B:call g:Highb()<CR>:call g:HighB()<CR>  
-    nnoremap <silent> e e:call g:Highe()<CR>:call g:HighE()<CR>  
-    nnoremap <silent> E E:call g:Highe()<CR>:call g:HighE()<CR>  
+    nnoremap <silent> w w:call SM_Highw()<CR>:call SM_HighW()<CR>
+    nnoremap <silent> W W:call SM_Highw()<CR>:call SM_HighW()<CR>
+    nnoremap <silent> b b:call SM_Highb()<CR>:call SM_HighB()<CR>
+    nnoremap <silent> B B:call SM_Highb()<CR>:call SM_HighB()<CR>
+    nnoremap <silent> e e:call SM_Highe()<CR>:call SM_HighE()<CR>
+    nnoremap <silent> E E:call SM_Highe()<CR>:call SM_HighE()<CR>
+
+    "Or:
+    nnoremap <silent> w w:call SM_Highw()<CR>
+    nnoremap <silent> W W:call SM_HighW()<CR>
+    nnoremap <silent> b b:call SM_Highb()<CR>
+    nnoremap <silent> B B:call SM_HighB()<CR>
+    nnoremap <silent> e e:call SM_Highe()<CR>
+    nnoremap <silent> E E:call SM_HighE()<CR>
 
     "Show motion for chars:  
-    nnoremap f :call g:FindChar( 'f', "forward" )<CR>  
-    nnoremap t :call g:FindChar( 't', "forward" )<CR>  
-    nnoremap F :call g:FindChar( 'F', "backward" )<CR>  
-    nnoremap T :call g:FindChar( 'T', "backward" )<CR>  
-    nnoremap ; :call g:SeekRepeat()<CR>:call g:HighRepeat()<CR>
-    nnoremap , :call g:SeekReverse()<CR>:call g:HighReverse()<CR>
+    nnoremap f :call SM_FindChar( 'f', "forward" )<CR>
+    nnoremap t :call SM_FindChar( 't', "forward" )<CR>
+    nnoremap F :call SM_FindChar( 'F', "backward" )<CR>
+    nnoremap T :call SM_FindChar( 'T', "backward" )<CR>
+    nnoremap ; :call SM_SeekRepeat()<CR>:call SM_HighRepeat()<CR>
+    nnoremap , :call SM_SeekReverse()<CR>:call SM_HighReverse()<CR>
 
 
 Known limitations:
@@ -45,4 +53,5 @@ Known limitations:
 
 
 Errors on update?  
- A gif was pushed on the repo, I realized it wasn't a good idea, thus I removed it from the repo and its history. The internet says this may cause some troubles.
+* A gif was pushed on the repo, I realized it wasn't a good idea, thus I removed it from the repo and its history. The internet says this may cause some troubles.
+* I changed the function's names, hence mappings need to be updated.

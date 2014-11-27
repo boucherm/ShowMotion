@@ -8,7 +8,7 @@
     let s:small_id = 0
 
   "--- Clean words' motions highlighting
-    function g:CleanWordMotion()
+    function SM_CleanWordMotion()
       if s:big_id
         call matchdelete(s:big_id)
         let s:big_id = 0
@@ -21,38 +21,38 @@
 
 
   "--- Big moves
-    function g:HighW()
+    function SM_HighW()
       let s:big_id = matchadd( "BigMotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%>'.(col('.')).'c' )
     endfunction
 
-    function g:HighB()
+    function SM_HighB()
       let s:big_id = matchadd( "BigMotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%<'.(col('.')+2).'c' )
     endfunction
 
-    function g:HighE()
+    function SM_HighE()
       let s:big_id = matchadd( "BigMotionGroup", '\(\S\ze\s\)\%'.line('.').'l\%>'.(col('.')).'c' )
     endfunction
 
 
   "--- Small moves
-    function g:Highw()
+    function SM_Highw()
       " thanks to sakkemo from #vim on irc.freenode.org who found the good regexp
       let s:small_id = matchadd( "SmallMotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%>'.(col('.')).'c' )
     endfunction
 
-    function g:Highb()
+    function SM_Highb()
       let s:small_id = matchadd( "SmallMotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%<'.(col('.')+2).'c' )
     endfunction
 
-    function g:Highe()
+    function SM_Highe()
       let s:small_id = matchadd( "SmallMotionGroup", '\(\k\>\|\S\<\|\S\ze\s\)\%'.line('.').'l\%>'.(col('.')).'c' )
     endfunction
 
 
   "---Autocommands to call CleanWordMotion
-    autocmd WinLeave * call g:CleanWordMotion()
-    autocmd InsertEnter * call g:CleanWordMotion()
-    autocmd CursorMoved * call g:CleanWordMotion()
+    autocmd WinLeave * call SM_CleanWordMotion()
+    autocmd InsertEnter * call SM_CleanWordMotion()
+    autocmd CursorMoved * call SM_CleanWordMotion()
 
 
 
@@ -66,8 +66,8 @@
     let s:dir = "none"
 
   "--- The functions
-  function SeekCharForward()
-    call g:CleanCharMotion()
+  function SM_SeekCharForward()
+    call SM_CleanCharMotion()
     if s:key=='f'
       let n = search( escape(nr2char(s:char), ".$^~" ), 'W', line('.') )
     end
@@ -79,8 +79,8 @@
     "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
   endfunction
 
-  function SeekCharBackward()
-    call g:CleanCharMotion()
+  function SM_SeekCharBackward()
+    call SM_CleanCharMotion()
     if s:key=='F'
       let n = search( escape(nr2char(s:char), ".$^~"), 'bW', line('.') )
     end
@@ -92,49 +92,49 @@
     "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
   endfunction
 
-  function g:SeekRepeat()
+  function SM_SeekRepeat()
     if ( s:dir == "forward" )
-      call SeekCharForward()
+      call SM_SeekCharForward()
     else
-      call SeekCharBackward()
+      call SM_SeekCharBackward()
     end
   endfunction
 
-  function g:SeekReverse()
+  function SM_SeekReverse()
     if ( s:dir == "forward" )
-      call SeekCharBackward()
+      call SM_SeekCharBackward()
     else
-      call SeekCharForward()
+      call SM_SeekCharForward()
     end
   endfunction
 
 
-  function HighCharForward()
+  function SM_HighCharForward()
     let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
   endfunction
 
-  function HighCharBackward()
+  function SM_HighCharBackward()
     let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
   endfunction
 
-  function g:HighRepeat()
+  function SM_HighRepeat()
     if ( s:dir == "forward" )
-      call HighCharForward()
+      call SM_HighCharForward()
     else
-      call HighCharBackward()
+      call SM_HighCharBackward()
     end
   endfunction
 
-  function g:HighReverse()
+  function SM_HighReverse()
     if ( s:dir == "forward" )
-      call HighCharBackward()
+      call SM_HighCharBackward()
     else
-      call HighCharForward()
+      call SM_HighCharForward()
     end
   endfunction
 
 
-  function g:CleanCharMotion()
+  function SM_CleanCharMotion()
     if s:c_id
       call matchdelete(s:c_id)
       let s:c_id = 0
@@ -142,18 +142,18 @@
   endfunction
 
 
-  function g:FindChar( key, dir)
+  function SM_FindChar( key, dir)
     let s:key = a:key
     let s:dir = a:dir
     let s:char = getchar()
 
-    call g:CleanCharMotion()
+    call SM_CleanCharMotion()
     let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
-    call g:SeekRepeat()
+    call SM_SeekRepeat()
   endfunction
 
 
   "---Autocommands to call CleanCharMotion
-  autocmd WinLeave * call g:CleanCharMotion()
-  autocmd InsertEnter * call g:CleanCharMotion()
-  autocmd CursorMoved * call g:CleanCharMotion()
+  autocmd WinLeave * call SM_CleanCharMotion()
+  autocmd InsertEnter * call SM_CleanCharMotion()
+  autocmd CursorMoved * call SM_CleanCharMotion()
