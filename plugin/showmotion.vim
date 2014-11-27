@@ -68,32 +68,32 @@
   "--- The functions
   function SeekCharForward()
     call g:CleanCharMotion()
-    if g:key=='f'
-      let n = search( escape(nr2char(g:char), ".$^~" ), 'W', line('.') )
+    if s:key=='f'
+      let n = search( escape(nr2char(s:char), ".$^~" ), 'W', line('.') )
     end
-    if g:key=='t'
+    if s:key=='t'
       call setpos( '.' , [0, line('.'), (col('.') + 1), 0] )
-      let n = search( escape(nr2char(g:char), ".$^~"), 'W', line('.') )
+      let n = search( escape(nr2char(s:char), ".$^~"), 'W', line('.') )
       call setpos( '.' , [0, line('.'), (col('.') - 1), 0] )
     end
-    "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
+    "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
   endfunction
 
   function SeekCharBackward()
     call g:CleanCharMotion()
-    if g:key=='F'
-      let n = search( escape(nr2char(g:char), ".$^~"), 'bW', line('.') )
+    if s:key=='F'
+      let n = search( escape(nr2char(s:char), ".$^~"), 'bW', line('.') )
     end
-    if g:key=='T'
+    if s:key=='T'
       call setpos( '.' , [0, line('.'), (col('.') - 1), 0] )
-      let n = search( escape(nr2char(g:char), ".$^~"), 'bW', line('.') )
+      let n = search( escape(nr2char(s:char), ".$^~"), 'bW', line('.') )
       call setpos( '.' , [0, line('.'), (col('.') + 1), 0] )
     end
-    "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
+    "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
   endfunction
 
   function g:SeekRepeat()
-    if ( g:dir == "forward" )
+    if ( s:dir == "forward" )
       call SeekCharForward()
     else
       call SeekCharBackward()
@@ -101,7 +101,7 @@
   endfunction
 
   function g:SeekReverse()
-    if ( g:dir == "forward" )
+    if ( s:dir == "forward" )
       call SeekCharBackward()
     else
       call SeekCharForward()
@@ -110,15 +110,15 @@
 
 
   function HighCharForward()
-    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
+    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
   endfunction
 
   function HighCharBackward()
-    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
+    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
   endfunction
 
   function g:HighRepeat()
-    if ( g:dir == "forward" )
+    if ( s:dir == "forward" )
       call HighCharForward()
     else
       call HighCharBackward()
@@ -126,7 +126,7 @@
   endfunction
 
   function g:HighReverse()
-    if ( g:dir == "forward" )
+    if ( s:dir == "forward" )
       call HighCharBackward()
     else
       call HighCharForward()
@@ -143,12 +143,12 @@
 
 
   function g:FindChar( key, dir)
-    let g:key = a:key
-    let g:dir = a:dir
-    let g:char = getchar()
+    let s:key = a:key
+    let s:dir = a:dir
+    let s:char = getchar()
 
     call g:CleanCharMotion()
-    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(g:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
+    let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
     call g:SeekRepeat()
   endfunction
 
