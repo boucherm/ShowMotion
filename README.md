@@ -18,10 +18,22 @@ Installation:
 
 Add these to your vimrc:  
 
-    "Highlighting (probably needs to be adapted to your colorscheme)
+    "Highlighting (probably needs to be adapted to your colorscheme):
     highlight SM_SmallMotionGroup cterm=italic                ctermbg=53 gui=italic                guibg=#5f005f
     highlight SM_BigMotionGroup   cterm=italic,bold,underline ctermbg=54 gui=italic,bold,underline guibg=#5f0087
     highlight SM_CharSearchGroup  cterm=italic,bold           ctermbg=4  gui=italic,bold           guibg=#3f6691
+    "
+    "Or, if you load your colorscheme after your plugins:
+    function! SM_Highlight()
+      highlight SM_SmallMotionGroup cterm=italic                ctermbg=53 gui=italic                guibg=#5f005f
+      highlight SM_BigMotionGroup   cterm=italic,bold,underline ctermbg=54 gui=italic,bold,underline guibg=#5f0087
+      highlight SM_CharSearchGroup  cterm=italic,bold           ctermbg=4  gui=italic,bold           guibg=#3f6691
+    endfunction
+    call SM_Highlight()
+    augroup SM_HighlightAutocmds
+      autocmd!
+      autocmd ColorScheme call SM_Highlight()
+    augroup END
 
     "Show motion for words:  
     nnoremap <silent> w w:call SM_Highw()<CR>:call SM_HighW()<CR>
@@ -30,7 +42,6 @@ Add these to your vimrc:
     nnoremap <silent> B B:call SM_Highb()<CR>:call SM_HighB()<CR>
     nnoremap <silent> e e:call SM_Highe()<CR>:call SM_HighE()<CR>
     nnoremap <silent> E E:call SM_Highe()<CR>:call SM_HighE()<CR>
-
     "Or:
     nnoremap <silent> w w:call SM_Highw()<CR>
     nnoremap <silent> W W:call SM_HighW()<CR>
@@ -52,6 +63,7 @@ Known limitations:
 
 * For char-motions highlighting is only triggered when pressing `;` or `,`
 * `E` fails on highlighting the last character of the line
+* Char-motions appear to be case-insensitive
 
 
 Errors on update?  
