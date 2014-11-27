@@ -60,10 +60,10 @@
   highlight CharSearchGroup cterm=italic,bold ctermbg=4 ctermfg=none
 
   " The vars
-    let g:char = 97
-    let g:key = 'a'
+    let s:char = 97
+    let s:key = 'a'
     let s:c_id = 0
-    let g:dir = "none"
+    let s:dir = "none"
 
   "--- The functions
   function SeekCharForward()
