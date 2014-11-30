@@ -1,3 +1,8 @@
+if exists('g:loaded_showmotion')
+  finish
+endif
+let g:loaded_showmotion = 1
+
 let s:save_cpo = &cpo
 set cpo&vim
 
