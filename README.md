@@ -53,9 +53,7 @@ Add these character-motion settings to your vimrc:
 
 Known limitations:
 
-* For char-motions highlighting is only triggered when pressing `;` or `,`
 * `E` fails on highlighting the last character in the line
-* Char-motions appear to be case-insensitive
 
 
 Errors on update?  

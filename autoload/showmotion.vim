@@ -1,14 +1,14 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-" Word Motions {{{
+"------- Word Motions {{{
 
-" Vars {{{
+"----- Vars {{{
 let s:big_id = 0
 let s:small_id = 0
 " }}}
 
-" Clean words' motions highlighting {{{
+"----- Clean words' motions highlighting {{{
 function! showmotion#CleanWordMotion() abort
   if s:big_id
     call matchdelete(s:big_id)
@@ -21,7 +21,7 @@ function! showmotion#CleanWordMotion() abort
 endfunction
 " }}}
 
-" Big moves {{{
+"----- Big moves {{{
 function! showmotion#HighW() abort
   let s:big_id = matchadd( "ShowMotion_BigMotionGroup", '\(\s\)\@<=\S\%'.line('.').'l\%>'.(col('.')).'c' )
 endfunction
@@ -35,7 +35,7 @@ function! showmotion#HighE() abort
 endfunction
 " }}}
 
-" Small moves {{{
+"----- Small moves {{{
 function! showmotion#Highw() abort
   " thanks to sakkemo from #vim on irc.freenode.org who found the good regexp
   let s:small_id = matchadd( "ShowMotion_SmallMotionGroup", '\(\<\k\|\>\S\|\s\zs\S\)\%'.line('.').'l\%>'.(col('.')).'c' )
@@ -53,65 +53,87 @@ endfunction
 " }}}
 
 
-" Character Motions {{{
+"------- Character Motions {{{
 
-" Vars {{{
-let s:char = 97
-let s:key = 'a'
-let s:c_id = 0
-let s:dir = "none"
+"----- Vars {{{
+let s:char=97
+let s:land_next=0
+let s:c_id=0
+let s:dir="none"
+let s:char_first_search = "none"
+let s:save_ignorecase = &ignorecase
 " }}}
 
-" Functions {{{
+"----- Functions {{{
+"--- Ignorecase handling
+function! s:SaveDisableIgnorecase() abort
+  let s:save_ignorecase = &ignorecase
+  set noignorecase
+endfunction
+
+function! s:RestoreIgnorecase() abort
+  let &ignorecase = s:save_ignorecase
+endfunction
+
+"--- Char moves
 function! showmotion#SeekCharForward() abort
   call showmotion#CleanCharMotion()
-  if s:key ==# 'f'
-    call search( escape(nr2char(s:char), ".$^~" ), 'W', line('.') )
-  end
-  if s:key ==# 't'
+  if s:land_next
     call setpos( '.' , [0, line('.'), (col('.') + 1), 0] )
-    call search( escape(nr2char(s:char), ".$^~"), 'W', line('.') )
+  end
+  call search( escape(nr2char(s:char), ".$^~"), 'W', line('.') )
+  if s:land_next
     call setpos( '.' , [0, line('.'), (col('.') - 1), 0] )
   end
-  "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
 endfunction
 
 function! showmotion#SeekCharBackward() abort
   call showmotion#CleanCharMotion()
-  if s:key ==# 'F'
-    call search( escape(nr2char(s:char), ".$^~"), 'bW', line('.') )
-  end
-  if s:key ==# 'T'
+  if s:land_next
     call setpos( '.' , [0, line('.'), (col('.') - 1), 0] )
-    call search( escape(nr2char(s:char), ".$^~"), 'bW', line('.') )
+  end
+  call search( escape(nr2char(s:char), ".$^~"), 'bW', line('.') )
+  if s:land_next
     call setpos( '.' , [0, line('.'), (col('.') + 1), 0] )
   end
-  "let s:c_id = matchadd( "CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
 endfunction
 
 function! showmotion#SeekRepeat() abort
+  call s:SaveDisableIgnorecase()
   if s:dir ==# "forward" 
     call showmotion#SeekCharForward()
   else
     call showmotion#SeekCharBackward()
   end
+  call s:RestoreIgnorecase()
 endfunction
 
 function! showmotion#SeekReverse() abort
+  call s:SaveDisableIgnorecase()
   if s:dir ==# "forward" 
     call showmotion#SeekCharBackward()
   else
     call showmotion#SeekCharForward()
   end
+  call s:RestoreIgnorecase()
 endfunction
 
 
+"--- Char highlights
 function! showmotion#HighCharForward() abort
-  let s:c_id = matchadd( "ShowMotion_CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
+  if s:land_next
+    let s:c_id = matchadd( "ShowMotion_CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')+1).'c' )
+  else
+    let s:c_id = matchadd( "ShowMotion_CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%>'.(col('.')).'c' )
+  end
 endfunction
 
 function! showmotion#HighCharBackward() abort
-  let s:c_id = matchadd( "ShowMotion_CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')).'c' )
+  if s:land_next
+    let s:c_id = matchadd( "ShowMotion_CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')+1).'c' )
+  else
+    let s:c_id = matchadd( "ShowMotion_CharSearchGroup", escape(nr2char(s:char), ".$^~").'\%'.line('.').'l\%<'.(col('.')+2).'c' )
+  end
 endfunction
 
 function! showmotion#HighRepeat() abort
@@ -131,6 +153,7 @@ function! showmotion#HighReverse() abort
 endfunction
 
 
+"--- Char highlights cleaning
 function! showmotion#CleanCharMotion() abort
   if s:c_id
     call matchdelete(s:c_id)
@@ -138,15 +161,23 @@ function! showmotion#CleanCharMotion() abort
   end
 endfunction
 
+function! showmotion#CleanNonFirstCharMotion() abort
+  if s:char_first_search==0
+    call showmotion#CleanCharMotion()
+  end
+  let s:char_first_search=0
+endfunction
 
-function! showmotion#FindChar( key, dir) abort
-  let s:key = a:key
+
+function! showmotion#FindChar( land_next, dir) abort
+  let s:land_next = a:land_next
   let s:dir = a:dir
   echo ""
   let s:char = getchar()
 
-  call showmotion#CleanCharMotion()
   call showmotion#SeekRepeat()
+  call showmotion#HighRepeat()
+  let s:char_first_search=1
 endfunction
 " }}}
 
