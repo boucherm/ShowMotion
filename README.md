@@ -59,3 +59,8 @@ Known limitations:
 Errors on update?  
 * A gif was pushed on the repo, I realized it wasn't a good idea, thus I removed it from the repo and its history. The internet says this may cause some troubles.
 * I changed the function's names, hence mappings need to be updated.
+
+Thanks:
+ 
+* IRC: #vim, sakkemo, bairui, Raimondi and many others
+* Github: itchyny, haya14busa, Pyrohh
