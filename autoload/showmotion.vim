@@ -170,11 +170,12 @@ endfunction
 
 
 function! showmotion#Repeater(count, func)
-  let n = 1
-  while n <= a:count
-    call call(a:func, [])
-    let n += 1
-  endwhile
+  "let n = 1
+  "while n <= a:count
+    "call call(a:func, [])
+    "let n += 1
+  "endwhile
+  call map(range(a:count), 'call(a:func, [])')
 endfunction 
 
 
