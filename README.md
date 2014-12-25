@@ -53,7 +53,6 @@ Add these character-motion settings to your vimrc:
 
 Known limitations:
 
-* Breaks the `number-move` behaviour of vim (ex: `2w`)
 * `E` fails on highlighting the last character in the line
 
 

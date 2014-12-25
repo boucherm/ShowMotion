@@ -169,13 +169,23 @@ function! showmotion#CleanNonFirstCharMotion() abort
 endfunction
 
 
-function! showmotion#FindChar( land_next, dir) abort
+function! showmotion#Repeater(count, func)
+  let n = 1
+  while n <= a:count
+    call call(a:func, [])
+    let n += 1
+  endwhile
+endfunction 
+
+
+function! showmotion#FindChar( land_next, dir, count) abort
   let s:land_next = a:land_next
   let s:dir = a:dir
   echo ""
   let s:char = getchar()
 
-  call showmotion#SeekRepeat()
+  "call showmotion#SeekRepeat()
+  call showmotion#Repeater(a:count, "showmotion#SeekRepeat")
   call showmotion#HighRepeat()
   let s:char_first_search=1
 endfunction
