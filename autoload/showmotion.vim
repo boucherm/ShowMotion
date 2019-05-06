@@ -4,19 +4,23 @@ set cpo&vim
 "------- Word Motions {{{
 
 "----- Vars {{{
-let s:big_id = 0
+let s:big_id   = 0
 let s:small_id = 0
 " }}}
 
 "----- Clean words' motions highlighting {{{
 function! showmotion#CleanWordMotion() abort
   if s:big_id
-    call matchdelete(s:big_id)
+    let l:to_delete = s:big_id
     let s:big_id = 0
+    call matchdelete(l:to_delete)
+    set nocursorcolumn
   end
   if s:small_id
-    call matchdelete(s:small_id)
+    let l:to_delete = s:small_id
     let s:small_id = 0
+    call matchdelete(l:to_delete)
+    set nocursorcolumn
   end
 endfunction
 " }}}
@@ -56,12 +60,12 @@ endfunction
 "------- Character Motions {{{
 
 "----- Vars {{{
-let s:char=97
-let s:land_next=0
-let s:c_id=0
-let s:dir="none"
+let s:char              = 97
+let s:land_next         = 0
+let s:c_id              = 0
+let s:dir               = "none"
 let s:char_first_search = "none"
-let s:save_ignorecase = &ignorecase
+let s:save_ignorecase   = &ignorecase
 " }}}
 
 "----- Functions {{{
@@ -100,7 +104,7 @@ endfunction
 
 function! showmotion#SeekRepeat() abort
   call s:SaveDisableIgnorecase()
-  if s:dir ==# "forward" 
+  if s:dir ==# "forward"
     call showmotion#SeekCharForward()
   else
     call showmotion#SeekCharBackward()
@@ -110,7 +114,7 @@ endfunction
 
 function! showmotion#SeekReverse() abort
   call s:SaveDisableIgnorecase()
-  if s:dir ==# "forward" 
+  if s:dir ==# "forward"
     call showmotion#SeekCharBackward()
   else
     call showmotion#SeekCharForward()
@@ -137,7 +141,7 @@ function! showmotion#HighCharBackward() abort
 endfunction
 
 function! showmotion#HighRepeat() abort
-  if s:dir ==# "forward" 
+  if s:dir ==# "forward"
     call showmotion#HighCharForward()
   else
     call showmotion#HighCharBackward()
@@ -145,7 +149,7 @@ function! showmotion#HighRepeat() abort
 endfunction
 
 function! showmotion#HighReverse() abort
-  if s:dir ==# "forward" 
+  if s:dir ==# "forward"
     call showmotion#HighCharBackward()
   else
     call showmotion#HighCharForward()
@@ -158,6 +162,7 @@ function! showmotion#CleanCharMotion() abort
   if s:c_id
     call matchdelete(s:c_id)
     let s:c_id = 0
+    set nocursorcolumn
   end
 endfunction
 
@@ -176,7 +181,7 @@ function! showmotion#Repeater(count, func)
     "let n += 1
   "endwhile
   call map(range(a:count), 'call(a:func, [])')
-endfunction 
+endfunction
 
 
 function! showmotion#FindChar( land_next, dir, count) abort
